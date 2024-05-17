@@ -1,0 +1,224 @@
+.title {
+    font-size: 32px; 
+    font-weight: 700;
+    margin-top: 1%;
+}
+
+.comment-popup-box {
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: auto;
+    width: 30vw;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px; 
+    padding: 20px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+  }
+  
+  .comment-popup-box label,
+  .comment-popup-box input,
+  .comment-popup-box button {
+    margin: 1%;
+  }
+  
+  .comment-popup-box input {
+    width: 80%;
+  }
+
+  .outerBox {
+    margin: 1rem; 
+  }
+  
+  .list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 2;
+    font-size: large;
+    text-align: center;
+  }
+  
+  .listItem {
+    list-style-type: none;
+    padding: 1%;
+    margin: 1%;
+    width: 100%;
+    border-radius: 0.5rem; 
+    background-color: #f9fafb; 
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.5);
+}
+
+  .listNews {
+    list-style-type: none;
+    margin-top: 1%;
+    border-radius: 0.5rem; 
+    background-color: #f9fafb; 
+  }
+    
+  .listFeed {
+    list-style-type: none;
+    margin: 1%;
+    width: 80%;
+    padding: 1.8rem; 
+    border-radius: 0.5rem; 
+    background-color: #f9fafb; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  }
+
+  .header {
+    font-size: larger;
+    font-weight: 600;
+    margin: 1%;
+  }
+
+  .link {
+    text-decoration: underline;
+  }
+
+  .button {
+    background-color: lightblue; 
+    color: black;
+    margin: 0.5%;
+    border: none; 
+    padding: 10px 20px; 
+    cursor: pointer; 
+    border-radius: 4px; 
+    transition: background-color 0.3s ease; 
+  }
+  
+  .button:hover {
+    background-color: black;
+    color: white; 
+  }
+
+  .filterBox {
+    margin: 0.2%;
+  }
+
+  .matchSelector {
+    margin: 0.5%;
+  }
+
+  .matchSelector label {
+    margin: 0.35%;
+  }
+
+  .matchSelector input {
+    margin: 0.25%;
+  }
+
+  .addPopupBox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 50vh;
+    overflow-y: scroll;
+    width: 50vw;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px; 
+    padding: 20px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+}
+
+.addPopupBox label,
+.addPopupBox input,
+.addPopupBox button,
+.addPopupBox select {
+    margin: 1.4%;
+}
+
+.addPopupBox input,
+.addPopupBox select {
+    width: 90%;
+}
+
+.checkboxContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.editPopupBox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: auto;
+  overflow-y: scroll;
+  width: 30vw;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px; 
+  padding: 20px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+}
+
+.editPopupBox label,
+.editPopupBox input,
+.editPopupBox button,
+.editPopupBox select {
+    margin: 1.4%;
+}
+
+.editPopupBox input,
+.editPopupBox select {
+    width: 90%;
+}
+
+.postImage {
+  margin: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.expandIcon {
+  margin-top: 1%;
+}
+
+.articleContainer {
+  display: flex;
+  align-items: center;
+}
+
+.articleContent {
+  flex-grow: 1;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-800%);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgb(0, 255, 0));
+    background-size: 200% 100%;
+    background-position: left bottom;
+  }
+  100% {
+    transform: translateX(1000%);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgb(0, 255, 0));
+    background-size: 200% 100%;
+    background-position: left bottom;
+  }
+}
+
+.scanningIndicator {
+  display: inline-block;
+  align-items: center; 
+  margin-top: 10px;
+  width: 8%;
+  animation: slide 4s linear infinite;
+  background-size: 200% 100%;
+  background-position: left bottom;
+}
+
+.scannedUrl {
+  text-align: center;
+}
+
+
+
