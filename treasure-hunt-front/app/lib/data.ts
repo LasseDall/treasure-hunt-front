@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const BASE_URL = "http://localhost:8080/";
 
+
 export async function getClues() {
     try {
       const response = await fetch(`${BASE_URL}` + `api/clues/`, {
@@ -25,41 +26,121 @@ export async function getClues() {
 }
 
 export async function login(username: string, password: string) {  
+  const data = {
+      username,
+      password
+  };
 
-    const data = {
-        username,
-        password
-    };
+  try {
+      const response = await fetch(`${BASE_URL}` + 'auth/login', {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+      });
+      
+      if (!response.ok) {
+          const errorData = await response.json();
+          console.error(errorData);
+          throw new Error(errorData.message || 'Login fejl');
+      }
 
+      const result = await response.json();
+
+      if (result === true) {
+          localStorage.setItem('username', username);
+          toast.success('Du er nu logget ind som: ' + username);
+          window.location.href = '/clues';
+      } else {
+          toast.error('Fejl ved login')
+      }
+
+  } catch (error) {
+      toast.error('Der opstod en fejl under login');
+      throw error;  
+  }
+}
+
+export async function signup(name: string, email: string, phone: string, username: string, password: string) {  
+
+  const data = {
+      email,
+      phone,
+      name,
+      username,
+      password
+  };
+
+  try {
+      const response = await fetch(`${BASE_URL}` + 'users/new-user', {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        
+        console.error(errorData);
+
+        throw new Error(errorData.message || 'Fejl ved oprettelse af bruger');
+    }
+
+      const result = await response.json();
+
+      if (result.username) {
+          toast.success('Velkommen til ' + username);
+          window.location.href = '/login';
+      } else {
+          toast.error('Fejl ved oprettelse af bruger')
+      }
+
+  } catch (error) {
+      toast.error('Der opstod en fejl under oprettelse af brugeren');
+      throw error;  
+  }
+}
+
+  export async function logout() {  
     try {
-        const response = await fetch(`${BASE_URL}` + 'auth/login', {
+        const response = await fetch(`${BASE_URL}` + 'auth/logout', {
             method: 'POST',
             credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data)
         });
         
         if (!response.ok) {
           const errorData = await response.json();
           
           console.error(errorData);
-
-          throw new Error(errorData.message || 'Login fejl');
-      }
-
-        const result = await response.json();
-
-        if (result === true) {
-            toast.success('Du er nu logget ind som: ' + username);
-        } else {
-            toast.error('Fejl ved login')
+  
+          throw new Error(errorData.message || 'Fejl ved logout');
         }
-
+  
+        const result = await response.json();
+  
+        if (result === true) {
+            toast.success('Du er nu logget ud');
+            localStorage.removeItem('username');
+            window.location.href = '/login';
+        } else {
+            toast.error('Fejl ved oprettelse af bruger')
+        }
+  
     } catch (error) {
-        toast.error('Der opstod en fejl under login');
+        toast.error('Der opstod en fejl under oprettelse af brugeren');
         throw error;  
     }
-}
+  }
+
+
+
+
 

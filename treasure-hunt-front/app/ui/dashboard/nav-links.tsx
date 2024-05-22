@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   PlayIcon,
   HomeIcon,
   DocumentDuplicateIcon,
+  KeyIcon
 } from '@heroicons/react/24/outline';
+import { logout } from '../../lib/data'
 
 const links = [
   { name: 'News', href: '/news', icon: HomeIcon },
@@ -17,6 +19,11 @@ const links = [
     href: '/live-feed',
     icon: PlayIcon,
   },
+  {
+    name: localStorage.getItem('username') ? 'Logout' : 'Login',
+    href: localStorage.getItem('username') ? '/logout' : '/login',
+    icon: KeyIcon,
+  },
 ];
 
 export default function NavLinks() {
@@ -25,6 +32,10 @@ export default function NavLinks() {
   useEffect(() => {
     setCurrentPath(window.location.pathname);
   }, []);
+
+  const handleLogout = () => {
+    logout()
+  };
 
   return (
     <>
@@ -39,6 +50,7 @@ export default function NavLinks() {
             key={link.name}
             href={link.href}
             className={`flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium md:flex-none md:justify-start md:p-2 md:px-3 ${activeClass} ${activeLinkStyle}`}
+            onClick={link.name === 'Logout' ? handleLogout : undefined}
           >
             <LinkIcon className="w-6" />
             <p className="hidden md:block">{link.name}</p>

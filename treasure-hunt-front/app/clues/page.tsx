@@ -5,7 +5,10 @@ import { getClues } from '../lib/data';
 import { ToastContainer } from 'react-toastify';
 import { Clue } from '../lib/definitions';
 import ClueChart from './clue-chart';
-
+import GridChart from './grid-chart';
+import Map from './map';
+import Chessboard from './chess-board';
+import 'leaflet/dist/leaflet.css';
 
 export default function CluePage() {
 
@@ -26,6 +29,9 @@ export default function CluePage() {
         <main>
             <ToastContainer />
             <ClueChart clues={clues} />
+            <GridChart />
+            <Map />
+            <Chessboard />
         </main>
-    )
+    );
 }

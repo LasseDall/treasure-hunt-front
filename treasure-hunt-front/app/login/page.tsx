@@ -22,12 +22,14 @@ export default function LoginPage() {
     };
 
     return (
-        <main>
+        <main className={styles.centerMain}>
             <ToastContainer />
-            <h1>Login</h1>
+            <div className={styles.loginDiv}>
+                <h1 className={styles.title}>Login</h1>
                 <div>
-                    <label htmlFor="username">Brugernavn:</label>
+                    <label className={styles.label} htmlFor="username">Brugernavn:</label>
                     <input 
+                        className={styles.input}
                         type="text" 
                         id="username" 
                         value={username} 
@@ -36,8 +38,9 @@ export default function LoginPage() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="password">Adgangskode:</label>
+                    <label className={styles.label} htmlFor="password">Adgangskode:</label>
                     <input 
+                        className={styles.input}
                         type="password" 
                         id="password" 
                         value={password} 
@@ -46,6 +49,10 @@ export default function LoginPage() {
                     />
                 </div>
                 <button className={styles.button} onClick={handleLogin}>Login</button>
+            </div>
+            <div className={styles.linkDiv}>
+                <a href='/signup' className={styles.link}>Er du ikke medlem endnu?</a>
+            </div>
         </main>
     );
 }

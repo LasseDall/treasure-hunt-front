@@ -1,7 +1,8 @@
 .title {
     font-size: 32px; 
     font-weight: 700;
-    margin-top: 1%;
+    padding-bottom: 4%;
+    text-align: center;
 }
 
 .comment-popup-box {
@@ -53,7 +54,7 @@
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.5);
 }
 
-  .listNews {
+  .listClues {
     list-style-type: none;
     margin-top: 1%;
     border-radius: 0.5rem; 
@@ -83,12 +84,15 @@
   .button {
     background-color: lightblue; 
     color: black;
-    margin: 0.5%;
     border: none; 
     padding: 10px 20px; 
     cursor: pointer; 
     border-radius: 4px; 
     transition: background-color 0.3s ease; 
+    align-self: center;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
   }
   
   .button:hover {
@@ -171,20 +175,17 @@
     width: 90%;
 }
 
-.postImage {
+.clueImage {
   margin: 1%;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 50%;
+  height: auto;
 }
 
 .expandIcon {
   margin-top: 1%;
-}
-
-.articleContainer {
-  display: flex;
-  align-items: center;
 }
 
 .articleContent {
@@ -220,5 +221,153 @@
   text-align: center;
 }
 
+.loginDiv {
+  background-color: lightgray;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
+  padding: 5%;
+  margin: 1%;
+  display: flex;
+  flex-direction: column;
+}
 
+.label {
+  display: inline-block; 
+  min-width: 140px;
+  margin-bottom: 5%; 
+}
 
+.centerMain {
+  margin-top: 5%;
+}
+
+.input {
+  width: 60%;
+}
+
+.clueText {
+  padding: 5%;
+}
+
+.clueContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: auto; 
+}
+
+.gridOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  pointer-events: none;
+}
+
+.gridCell {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s ease;
+}
+
+.gridContainer {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 60vw;
+  height: 60vw;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  margin: 2%;
+}
+
+.green {
+ background-color: green;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+}
+
+.gridDiv {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.cell {
+  width: 100%;
+  height: 100%;
+  border: 1px solid black; 
+  transition: opacity 0.3s ease;
+}
+
+.transparent {
+  background-color: transparent;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.map {
+  margin-top: 2%;
+}
+
+.chessBoard {
+  display: flex;
+  flex-wrap: wrap;
+  width: 60vw;
+  height: 60vw;
+  margin: 2%;
+}
+
+.square {
+  width: 12.5%;
+  height: 12.5%;
+}
+
+.boardSquare {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.piece {
+  font-size: 50px;
+  font-weight: bold;
+  cursor: move;
+  text-align: center;
+}
+
+.brown {
+  color: brown;
+}
+
+.gray {
+  color: gray;
+}
+
+.rainbow {
+  background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.link {
+  text-decoration: underline;
+  margin: 2%;
+}

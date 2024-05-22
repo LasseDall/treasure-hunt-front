@@ -12,7 +12,7 @@ export default function ImageComponent({ imageData }: { imageData: string; }) {
     }, [imageData]);
   
     return (
-      <div className={styles.postImage}>
+      <div className={styles.clueImage}>
         {imageUrl && <img src={imageUrl} alt="image" />}
       </div>
     );
