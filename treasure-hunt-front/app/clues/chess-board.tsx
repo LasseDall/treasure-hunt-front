@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Piece from './chess-piece'
@@ -25,21 +25,22 @@ const Chessboard: React.FC = () => {
         { x: 6, y: 1, type: 'pawn', color: 'rainbow' },
         { x: 7, y: 1, type: 'pawn', color: 'brown' },
       ]);
-  
+
       const handleDrop = (startX: number, startY: number, endX: number, endY: number) => {
+        console.log(startX,startY,endX,endY)
         setPieces(prevPieces =>
-          prevPieces.map(piece =>
-            piece.x === startX && piece.y === startY ? { ...piece, x: endX, y: endY } : piece
-          )
+            prevPieces.map(piece =>
+                piece.x === startX && piece.y === startY ? { ...piece, x: endX, y: endY } : piece
+            )
         );
-      };
+    };
     
       const renderSquare = (i: number) => {
         const x = i % 8;
         const y = Math.floor(i / 8);
         return (
           <div key={i} className={styles.square}>
-            <BoardSquare x={x} y={y} onDrop={(endX, endY) => handleDrop(x, y, endX, endY)}>
+            <BoardSquare x={x} y={y} onDrop={(endX, endY) => handleDrop(endX, endY, x, y)}>
               {renderPiece(x, y)}
             </BoardSquare>
           </div>

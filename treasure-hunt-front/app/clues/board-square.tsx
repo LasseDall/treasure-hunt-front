@@ -13,8 +13,7 @@ interface BoardSquareProps {
     const [{ isOver }, drop] = useDrop(() => ({
       accept: ItemTypes.PIECE,
       drop: (item: { x: number; y: number; type: string }) => {
-        onDrop(item.x, item.y); // Kald onDrop med x og y koordinater
-        return { x, y }; // Returner et objekt som drop result
+        onDrop(item.x, item.y); 
       },
       collect: (monitor) => ({
         isOver: !!monitor.isOver(),

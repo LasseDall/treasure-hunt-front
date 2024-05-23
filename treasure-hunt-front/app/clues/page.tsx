@@ -29,7 +29,7 @@ export default function CluePage() {
         <main>
             <ToastContainer />
             <ClueChart clues={clues} />
-            <GridChart />
+            <GridChart fetchData={fetchData}/>
             <Map />
             <Chessboard />
         </main>

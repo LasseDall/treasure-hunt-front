@@ -21,7 +21,7 @@ const links = [
   },
   {
     name: localStorage.getItem('username') ? 'Logout' : 'Login',
-    href: localStorage.getItem('username') ? '/logout' : '/login',
+    href: '/login',
     icon: KeyIcon,
   },
 ];

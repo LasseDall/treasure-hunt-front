@@ -27,7 +27,7 @@ export default function ClueChart({ clues }: { clues: Clue[] }) {
         }, 50); 
     
         return () => clearInterval(interval);
-      }, []);
+    }, []);
 
     return (
         <ul>

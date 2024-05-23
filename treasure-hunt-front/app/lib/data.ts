@@ -106,7 +106,7 @@ export async function signup(name: string, email: string, phone: string, usernam
   }
 }
 
-  export async function logout() {  
+export async function logout() {  
     try {
         const response = await fetch(`${BASE_URL}` + 'auth/logout', {
             method: 'POST',
@@ -138,8 +138,48 @@ export async function signup(name: string, email: string, phone: string, usernam
         toast.error('Der opstod en fejl under oprettelse af brugeren');
         throw error;  
     }
-  }
+}
 
+export async function unlockCode(name: string, code: string) {  
+
+    const data = {
+        name, 
+        password: code
+    };
+  
+    try {
+        const response = await fetch(`${BASE_URL}` + 'api/codes/', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json();
+          
+          console.error(errorData);
+  
+          throw new Error(errorData.message || 'Der opstod en fejl');
+      }
+  
+        const result = await response.json();
+  
+        if (result === true) {
+            toast.success('Godt klaret!');
+            return true;
+        } else {
+            toast.error('Ikke helt rigtigt..');
+            return false;
+        }
+  
+    } catch (error) {
+        toast.error('Der opstod en fejl');
+        throw error;  
+    }
+}
 
 
 
