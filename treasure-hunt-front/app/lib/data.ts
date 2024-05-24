@@ -126,12 +126,12 @@ export async function logout() {
   
         const result = await response.json();
   
-        if (result === true) {
+        if (result != null) {
             toast.success('Du er nu logget ud');
             localStorage.removeItem('username');
             window.location.href = '/login';
         } else {
-            toast.error('Fejl ved oprettelse af bruger')
+            toast.error('Fejl ved logout')
         }
   
     } catch (error) {

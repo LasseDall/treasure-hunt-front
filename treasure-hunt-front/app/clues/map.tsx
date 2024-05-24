@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -19,7 +19,7 @@ const greenIcon = L.icon({
   popupAnchor: [5, -68] 
 });
 
-export default function Map() {
+export default function Map({ fetchData }: { fetchData: () => void }) {
   const [pins, setPins] = useState<Pin[]>([]);
   const [pinCode, setPinCode] = useState<string[]>([]);
   const [codeAccepted, setCodeAccepted] = useState(false);
@@ -43,6 +43,19 @@ export default function Map() {
     return null;
   };
 
+  useEffect(() => {
+    if (codeAccepted) {
+        fetchData();
+    }
+  }, [codeAccepted]);
+
+  const handleUnlock = async () => {
+    const accepted = await unlockCode("map", pinCode.join(''));
+    if (accepted === true) {
+        setCodeAccepted(true);
+    }
+  }
+
   const removePin = (index: number, event: React.MouseEvent<HTMLButtonElement>, lat: number, lng: number) => {
     event.stopPropagation();
     setPins(prevPins => prevPins.filter((_, i) => i !== index));
@@ -50,7 +63,7 @@ export default function Map() {
   };
 
   return (
-    <div>
+    <div className={styles.gridDiv}>
     <MapContainer className={styles.map} center={[56.2, 11.2]} zoom={7.2} style={{ height: '100vh', width: '100%' }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -67,7 +80,7 @@ export default function Map() {
       ))}
       <MapEvents />
     </MapContainer>
-    <button className={styles.button} onClick={() => unlockCode("map", pinCode.join(''))}>Prøv svar</button>
+    <button className={styles.button} onClick={() => handleUnlock()}>Prøv svar</button>
     </div>
   );
 };
