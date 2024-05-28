@@ -1,13 +1,10 @@
 'use client'
 
 import { useState, useEffect, ChangeEventHandler } from 'react';
-import { getClues } from '../lib/data';
+import { getClues, logout } from '../lib/data';
 import { ToastContainer } from 'react-toastify';
 import { Clue } from '../lib/definitions';
-import ClueChart from './clue-chart';
-import GridChart from './grid-chart';
-import Map from './map';
-import Chessboard from './chess-board';
+import Popup from './popup';
 import 'leaflet/dist/leaflet.css';
 import { unlockCode } from '../lib/data';
 import styles from '../ui/home.module.css';
@@ -15,25 +12,18 @@ import styles from '../ui/home.module.css';
 export default function CluePage() {
 
     const [clues, setClues] = useState<Clue[]>([]);
-    const [codeValue, setCodeValue] = useState('');
-    const [codeAccepted, setCodeAccepted] = useState(false);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [componentName, setComponentName] = useState('');
 
-    useEffect(() => {
-        if (codeAccepted) {
-            fetchData();
-        }
-      }, [codeAccepted]);
-
-    const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setCodeValue(e.target.value);
+    const handleOpenPopup = (component: string) => {
+      setComponentName(component);
+      setIsPopupOpen(true);
     };
-
-    const handleUnlock = async () => {
-        const accepted = await unlockCode("første", codeValue);
-        if (accepted === true) {
-            setCodeAccepted(true);
-        }
-    }
+  
+    const handleClosePopup = () => {
+      setIsPopupOpen(false);
+      setComponentName('');
+    };
 
     useEffect(() => {
         const username = localStorage.getItem('username');
@@ -52,21 +42,28 @@ export default function CluePage() {
     }
 
     return (
-        <main>
+        <main className={styles.body}>
             <ToastContainer />
-            <ClueChart clues={clues} />
-            <GridChart fetchData={fetchData}/>
-            <Map fetchData={fetchData}/>
-            <Chessboard fetchData={fetchData}/>
-            <div>
-                <input 
-                    type="text" 
-                    value={codeValue} 
-                    onChange={handleCodeChange} 
-                    placeholder="Enter code" 
-                /><br />
-                <button className={styles.button} onClick={() => handleUnlock()}>Svar</button>
-            </div>
+            <button className={`${styles.buttonImage} ${styles.button1}`} onClick={() => handleOpenPopup("chess-board")}>
+                <img src="/assets/chess.png" alt="Button 1" />
+            </button>
+            <button className={`${styles.buttonImage} ${styles.button2}`} onClick={() => handleOpenPopup("map")}>
+                <img src="/assets/map.png" alt="Button 2" />
+            </button>
+            <button className={`${styles.buttonImage} ${styles.button3}`} onClick={() => handleOpenPopup("text-riddle")}>
+                <img src="/assets/stickies.png" alt="Button 3" />
+            </button>
+            <button className={`${styles.buttonImage} ${styles.button4}`} onClick={() => handleOpenPopup("grid-chart")}>
+                <img src="/assets/quilt.png" alt="Button 4" />
+            </button>
+            <button className={`${styles.buttonImage} ${styles.button5}`} onClick={() => logout()}>
+                <img src="/assets/exit.png" alt="Button 5" />
+            </button>
+            <button className={`${styles.buttonImage} ${styles.button6}`} onClick={() => handleOpenPopup("clue-chart")}>
+                <img src="/assets/magnifying-glass.png" alt="Button 6" />
+            </button>
+
+            <Popup isOpen={isPopupOpen} onClose={handleClosePopup} componentName={componentName} clues={clues} fetchData={fetchData} />
         </main>
     );
 }
