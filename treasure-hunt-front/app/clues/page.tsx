@@ -1,12 +1,11 @@
 'use client'
 
-import { useState, useEffect, ChangeEventHandler } from 'react';
+import { useState, useEffect } from 'react';
 import { getClues, logout } from '../lib/data';
 import { ToastContainer } from 'react-toastify';
 import { Clue } from '../lib/definitions';
 import Popup from './popup';
 import 'leaflet/dist/leaflet.css';
-import { unlockCode } from '../lib/data';
 import styles from '../ui/home.module.css';
 
 export default function CluePage() {
@@ -61,6 +60,9 @@ export default function CluePage() {
             </button>
             <button className={`${styles.buttonImage} ${styles.button6}`} onClick={() => handleOpenPopup("clue-chart")}>
                 <img src="/assets/magnifying-glass.png" alt="Button 6" />
+            </button>
+            <button className={`${styles.buttonImage} ${styles.button7}`} onClick={() => handleOpenPopup("notes")}>
+                <img src="/assets/memo.png" alt="Button 6" />
             </button>
 
             <Popup isOpen={isPopupOpen} onClose={handleClosePopup} componentName={componentName} clues={clues} fetchData={fetchData} />

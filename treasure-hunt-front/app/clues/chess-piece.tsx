@@ -62,7 +62,7 @@ const Piece: React.FC<PieceProps> = ({ x, y, type, color }) => {
       ref={drag}
       style={{
         opacity: isDragging ? 0.5 : 1,
-        fontSize: 50,
+        fontSize: 35,
         fontWeight: 'bold',
         cursor: 'move',
         textAlign: 'center',

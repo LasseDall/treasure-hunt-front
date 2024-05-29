@@ -25,6 +25,51 @@ export async function getClues() {
     }
 }
 
+export async function getNotes() {
+    try {
+      const response = await fetch(`${BASE_URL}` + `users/notes`, {
+        credentials: 'include'
+      });
+    
+      const result = await response.text();
+      
+      return result;
+    } catch (error) {
+      console.error("Error fetching notes:", error);
+    }
+}
+
+export async function updateNotes(notes: string) {
+
+    try {
+      const response = await fetch(`${BASE_URL}` + `users/notes`, {
+        method: 'PUT',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'text/plain',
+        },
+        body: notes
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error(errorData);
+        throw new Error(errorData.message || 'Fejl ved opdatering af noter');
+    }
+
+    const result = await response.json();
+
+    if (result === true) {
+        toast.success('Noterne blev gemt');
+    } else {
+        toast.error('Fejl ved opdtering af noter')
+    }
+
+    } catch (error) {
+      console.error("Error fetching notes:", error);
+    }
+}
+
 export async function login(username: string, password: string) {  
   const data = {
       username,

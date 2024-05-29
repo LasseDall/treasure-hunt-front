@@ -64,7 +64,7 @@ export default function Map({ fetchData }: { fetchData: () => void }) {
 
   return (
     <div className={styles.gridDiv}>
-    <MapContainer className={styles.map} center={[56.2, 11.2]} zoom={7.2} style={{ height: '100vh', width: '100%' }}>
+    <MapContainer className={styles.map} center={[56.2, 11.2]} zoom={6.2} style={{ height: '100vh', width: '100%' }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

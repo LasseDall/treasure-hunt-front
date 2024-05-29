@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { unlockCode } from '../lib/data';
 import styles from '../ui/home.module.css';
 
-export default function Map({ fetchData }: { fetchData: () => void }) {
+export default function TextRiddle({ fetchData }: { fetchData: () => void }) {
 
     const [codeValue, setCodeValue] = useState('');
     const [codeAccepted, setCodeAccepted] = useState(false);
