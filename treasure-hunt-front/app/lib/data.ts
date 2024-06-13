@@ -6,7 +6,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const BASE_URL = "http://localhost:8080/";
 
-
 export async function getClues() {
     try {
       const response = await fetch(`${BASE_URL}` + `api/clues/`, {
@@ -34,37 +33,6 @@ export async function getNotes() {
       const result = await response.text();
       
       return result;
-    } catch (error) {
-      console.error("Error fetching notes:", error);
-    }
-}
-
-export async function updateNotes(notes: string) {
-
-    try {
-      const response = await fetch(`${BASE_URL}` + `users/notes`, {
-        method: 'PUT',
-        credentials: 'include',
-        headers: {
-            'Content-Type': 'text/plain',
-        },
-        body: notes
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error(errorData);
-        throw new Error(errorData.message || 'Fejl ved opdatering af noter');
-    }
-
-    const result = await response.json();
-
-    if (result === true) {
-        toast.success('Noterne blev gemt');
-    } else {
-        toast.error('Fejl ved opdtering af noter')
-    }
-
     } catch (error) {
       console.error("Error fetching notes:", error);
     }
@@ -223,6 +191,34 @@ export async function unlockCode(name: string, code: string) {
     } catch (error) {
         toast.error('Der opstod en fejl');
         throw error;  
+    }
+}
+
+export async function updateNotes(notes: string) {
+
+    try {
+        const response = await fetch(`${BASE_URL}` + 'users/notes', {
+            method: 'PUT',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: notes
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            
+            console.error(errorData);
+    
+            throw new Error(errorData.message || 'Der opstod en fejl');
+        }
+        
+        toast.success('Dine noter blev gemt!');
+        
+
+    } catch (error) {
+        console.error(error);
     }
 }
 

@@ -1,9 +1,7 @@
 'use client'
 
-import SideNav from '@/app/ui/dashboard/sidenav';
 import '@/app/ui/global.css';
 import { inter } from '@/app/ui/fonts';
-import styles from './ui/home.module.css'
 
 
 export default function RootLayout({
